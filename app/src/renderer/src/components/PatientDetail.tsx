@@ -1174,22 +1174,46 @@ const PatientDetail: React.FC<PatientDetailProps> = ({ patientId, onEditPatient,
                       </span>
                       <span className="history-visit-label">{rec.visit_label || `${rec.visit_count}回目`}</span>
                       {!rec.is_placeholder && rec.attachments && rec.attachments.length > 0 && (
-                        <span 
-                          style={{ 
-                            fontSize: '11px', 
-                            background: 'rgba(59, 130, 246, 0.1)', 
-                            color: 'var(--color-primary)', 
-                            padding: '2px 6px', 
-                            borderRadius: '12px', 
-                            fontWeight: 'bold',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '3px',
-                            marginLeft: '6px'
-                          }}
-                        >
-                          📎 {rec.attachments.length}
-                        </span>
+                        <>
+                          {rec.attachments.filter((a: any) => a.file_type === 'image').length > 0 && (
+                            <span 
+                              style={{ 
+                                fontSize: '13px', 
+                                background: 'rgba(59, 130, 246, 0.1)', 
+                                color: 'var(--color-primary)', 
+                                padding: '3px 8px', 
+                                borderRadius: '12px', 
+                                fontWeight: 'bold',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                marginLeft: '6px'
+                              }}
+                              title={`画像: ${rec.attachments.filter((a: any) => a.file_type === 'image').length}件`}
+                            >
+                              📷 {rec.attachments.filter((a: any) => a.file_type === 'image').length}
+                            </span>
+                          )}
+                          {rec.attachments.filter((a: any) => a.file_type === 'video').length > 0 && (
+                            <span 
+                              style={{ 
+                                fontSize: '13px', 
+                                background: 'rgba(245, 158, 11, 0.1)', 
+                                color: '#d97706', 
+                                padding: '3px 8px', 
+                                borderRadius: '12px', 
+                                fontWeight: 'bold',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                marginLeft: '6px'
+                              }}
+                              title={`動画: ${rec.attachments.filter((a: any) => a.file_type === 'video').length}件`}
+                            >
+                              🎥 {rec.attachments.filter((a: any) => a.file_type === 'video').length}
+                            </span>
+                          )}
+                        </>
                       )}
                       <span className="history-summary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         {rec.is_placeholder ? (
