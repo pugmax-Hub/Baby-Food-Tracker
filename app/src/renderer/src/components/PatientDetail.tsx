@@ -1173,6 +1173,24 @@ const PatientDetail: React.FC<PatientDetailProps> = ({ patientId, onEditPatient,
                         {rec.is_placeholder ? (rec.record_date || '日付未設定') : rec.record_date}
                       </span>
                       <span className="history-visit-label">{rec.visit_label || `${rec.visit_count}回目`}</span>
+                      {!rec.is_placeholder && rec.attachments && rec.attachments.length > 0 && (
+                        <span 
+                          style={{ 
+                            fontSize: '11px', 
+                            background: 'rgba(59, 130, 246, 0.1)', 
+                            color: 'var(--color-primary)', 
+                            padding: '2px 6px', 
+                            borderRadius: '12px', 
+                            fontWeight: 'bold',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '3px',
+                            marginLeft: '6px'
+                          }}
+                        >
+                          📎 {rec.attachments.length}
+                        </span>
+                      )}
                       <span className="history-summary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         {rec.is_placeholder ? (
                           <span className="badge-placeholder" style={{ fontSize: '11px', padding: '1px 6px', border: '1px dashed var(--color-text-light)', borderRadius: '10px', color: 'var(--color-text-light)' }}>
